@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENT TO AGENT AGREEMENT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 100px;
+        }
+        .header h2 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 16px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f0f0f0;
+        }
+        .section-title {
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .signature-box {
+            width: 45%;
+            text-align: center;
+            border-top: 1px solid #000;
+            padding-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+        label {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/uploads/indus.png" alt="Indus Real Estate Logo">
+            <h2>Agreement Between Agent to Agent - Sale</h2>
+            <h5>As per the Real Estate Brokers By-Law No. (85) of 2006</h5>
+        </div>
+
+        <form method="POST" action="/v1/submit-agreement" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <th colspan="1">PART 1 - THE PARTIES</th>
+                    <th colspan="1">
+                        <input type="date" name="dated" class="form-control" required>
+                    </th>
+                </tr>
+                
+                <!-- Agent A Section -->
+                <tr>
+                    <th colspan="2">A) THE AGENT / BROKER (LANDLORD'S AGENT)</th>
+                </tr>
+                <tr>
+                    <td>NAME OF THE ESTABLISHMENT:</td>
+                    <td><input type="text" name="agent_a_establishment" class="form-control" value="Indus Real Estate (LLC) DMCC Branch"></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" name="agent_a_address" class="form-control" value="Office 4H Almas Tower, JLT, DMCC, Dubai, UAE"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Office Contact Details:</th>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><input type="text" name="agent_a_phone" class="form-control" value="04 241 2888"></td>
+                </tr>
+                <tr>
+                    <td>Fax:</td>
+                    <td><input type="text" name="agent_a_fax" class="form-control" value="04 241 2888"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="agent_a_email" class="form-control" value="reception@indusre.ae"></td>
+                </tr>
+                <tr>
+                    <td>ORN:</td>
+                    <td><input type="text" name="agent_a_orn" class="form-control" value="22926"></td>
+                </tr>
+                <tr>
+                    <td>License No.:</td>
+                    <td><input type="text" name="agent_a_license" class="form-control" value="DMCC-446268"></td>
+                </tr>
+                <tr>
+                    <td>P.O Box:</td>
+                    <td><input type="text" name="agent_a_po_box" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>Emirates:</td>
+                    <td><input type="text" name="agent_a_emirates" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Registered Agent</th>
+                </tr>
+                <tr>
+                    <td>Registered Agent:<span style="color: red;">*</span></td>
+                    <td><select name="agent_a_name" id="agent_a_name" class="form-control" required>
+                        <option value="" disabled selected>Select an Agent</option>
+                        <option name="agent_a_name" value="TAMIR ABDELKARIM" data-brn="76172" data-mobile="507109122" data-email="tamir.abdelkarim@indusre.ae">TAMIR ABDELKARIM</option>
+                        <option name="agent_a_name" value="RUPESH KUMAR GOVINDANI" data-brn="76013" data-mobile="529711668" data-email="rupesh.govindani@indusre.ae">RUPESH KUMAR GOVINDANI</option>
+                        <option name="agent_a_name" value="DAWYNNE DARRYL PETERSEN" data-brn="73501" data-mobile="585708097" data-email="dawynne.petersen@indusre.ae">DAWYNNE DARRYL PETERSEN</option>
+                        <option name="agent_a_name" value="DIPTI NAIR" data-brn="48604" data-mobile="556610924" data-email="dipti.nair@indusre.ae">DIPTI NAIR</option>
+                        <option name="agent_a_name" value="LI LI HSIEH CHEN TSAI TAO" data-brn="42414" data-mobile="568853394" data-email="kim.hsieh@indusre.ae">LI LI HSIEH CHEN TSAI TAO</option>
+                        <option name="agent_a_name" value="PAURAS PRAVINCHANDRA SHAH" data-brn="52032" data-mobile="561624784" data-email="pauras@indusre.ae">PAURAS PRAVINCHANDRA SHAH</option>
+                        <option name="agent_a_name" value="TAHSEEN IBRAHIM MUNSHI" data-brn="55464" data-mobile="527186123" data-email="Tahseen.munshi@indusre.ae">TAHSEEN IBRAHIM MUNSHI</option>
+                        <option name="agent_a_name" value="SAGAR ABBAS" data-brn="37908" data-mobile="558148095" data-email="sagar@indusre.ae">SAGAR ABBAS</option>
+                        <option name="agent_a_name" value="NARDOS GIDEY BIRHANU" data-brn="82279" data-mobile="502258701" data-email="nardos.gidey@indusre.ae">NARDOS GIDEY BIRHANU</option>
+                        <option name="agent_a_name" value="MELANIE JANE O KEEFE" data-brn="56089" data-mobile="585087377" data-email="mel.okeefe-jones@indusre.ae">MELANIE JANE O KEEFE</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BRN:<span style="color: red;">*</span></td>
+                    <td><input type="text" name="agent_a_brn" id="BRN" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Date Issued:</td>
+                    <td><input type="date" name="agent_a_date_issued" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Mobile No.:</td>
+                    <td><input type="text" name="agent_a_mobile" id="agent_mobile" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="agent_a_email_personal" id="agent_email"  class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th colspan="2">DECLARATION BY AGENT "A"</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p>I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
+                        have a current signed Seller's Agreement FORM A, I shall respond to a reasonable offer
+                        to purchase the listed property from Agent B, and shall not contact Agent B's Buyer nor
+                        confer with their client under no circumstances unless the nominated Buyer herein has
+                        already discussed the stated listed property with our office.</p>
+                    </td>
+                </tr>
+
+                <!-- Agent B Section -->
+                <tr>
+                    <th colspan="2">B) THE AGENT / BROKER (TENANT'S AGENT)</th>
+                </tr>
+                <tr>
+                    <td>NAME OF THE ESTABLISHMENT:</td>
+                    <td><input type="text" name="agent_b_establishment" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" name="agent_b_address" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Office Contact Details:</th>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td><input type="text" name="agent_b_phone" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>Fax:</td>
+                    <td><input type="text" name="agent_b_fax" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="agent_b_email" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>ORN:</td>
+                    <td><input type="text" name="agent_b_orn" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>License No.:</td>
+                    <td><input type="text" name="agent_b_license" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>P.O Box:</td>
+                    <td><input type="text" name="agent_b_po_box" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <td>Emirates:</td>
+                    <td><input type="text" name="agent_b_emirates" class="form-control" value=""></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Registered Agent</th>
+                </tr>
+                <tr>
+                    <td>Registered Agent: <span style="color: red;">*</span></td>
+                    <td><input type="text" name="agent_b_name" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>BRN: <span style="color: red;">*</span></td>
+                    <td><input type="text" name="agent_b_brn" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Date Issued:</td>
+                    <td><input type="date" name="agent_b_date_issued" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Mobile No.:</td>
+                    <td><input type="text" name="agent_b_mobile" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="agent_b_email_personal" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th colspan="2">DECLARATION BY AGENT "B"</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p>I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
+                        have a current signed Buyer's Agreement FORM B, I shall encourage my Buyer as
+                        named herein, to submit a reasonable offer for the stated property from Agent A,
+                        and shall not contact Agent A's Seller nor confer with their client under no
+                        circumstances unless the Agent A has delayed our proposal on the prescribed FORM
+                        with a reasonable reply with 24 hours.</p>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th colspan="2">PART 2 - THE PROPERTY</th>
+                </tr>
+                <tr>
+                    <td>PROPERTY ADDRESS:</td>
+                    <td><input type="text" name="property_address" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>MASTER DEVELOPER:</td>
+                    <td><input type="text" name="master_developer" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>MASTER PROJECT NAME:</td>
+                    <td><input type="text" name="master_project" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <th colspan="2">PROPERTY DETAILS</th>
+                </tr>
+                <tr>
+                    <th colspan="2">Listing Agent to Complete</th>
+                </tr>
+                <tr>
+                    <td>BUILDING NAME:</td>
+                    <td><input type="text" name="building_name" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>LISTED PRICE:</td>
+                    <td><input type="text" name="listed_price" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>DESCRIPTION:</td>
+                    <td><textarea name="property_description" class="form-control" required></textarea></td>
+                </tr>
+                <tr>
+                    <th colspan="2">DOES A MOU EXIST ON THIS PROPERTY?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>
+                            <input type="radio" name="mou_exist" value="yes" required> YES
+                        </label>
+                        <label>
+                            <input type="radio" name="mou_exist" value="no"> NO
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">IS THIS PROPERTY TENANTED?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>
+                            <input type="radio" name="property_tenanted" value="yes" required> YES
+                        </label>
+                        <label>
+                            <input type="radio" name="property_tenanted" value="no"> NO
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>MAINTENANCE FEE P.A:</td>
+                    <td><input type="text" name="maintenance_description" class="form-control"></td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th colspan="2">PART 3 - THE COMMISSION (Split)</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p>The following commission split is agreed between the Agent A and Agent B</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SELLER'S AGENT %:</td>
+                    <td><input type="text" name="landlord_agent_percent" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>BUYER'S AGENT %:</td>
+                    <td><input type="text" name="tenant_agent_percent" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>BUYER'S NAME (Family Name ONLY):<span style="color: red;">*</span></td>
+                    <td><input type="text" name="tenant_name" class="form-control" required></td>
+                </tr>
+                <tr>
+                <th colspan="2">TRANSFER FEE PAID BY:</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    <label>
+                        <input type="checkbox" name="option1" value="option1"> SELLER 1% 
+                    </label>
+                    <label>
+                        <input type="checkbox" name="option2" value="option2"> BUYER 1%
+                    </label>
+                    <label>
+                        <input type="checkbox" name="option3" value="option3"> NEG
+                    </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">HAS THE BUYER HAD PRE-FINANCE APPROVAL</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>
+                            <input type="radio" name="pre_finance_approval" value="yes" required> YES
+                        </label>
+                        <label>
+                            <input type="radio" name="pre_finance_approval" value="no"> NO
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">HAS THIS BUYER CONTACTED THE LISTING AGENT?</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>
+                            <input type="radio" name="buyer_contacted_agent" value="yes" required> YES
+                        </label>
+                        <label>
+                            <input type="radio" name="buyer_contacted_agent" value="no"> NO
+                        </label>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th colspan="2">PART 4 - SIGNATURES</th>
+                </tr>
+            </table>
+
+            <div style="margin-top: 20px; font-weight: bold;">
+                Both Agents are required to co-operate fully, complete this FORM & BOTH retain a fully signed
+                & stamped copy on file.
+            </div>
+            <br><br><br><br>
+
+<div class="signature-section">
+    <div class="signature-box">
+        <p><strong>Agent A</strong></p>
+        <br>
+        <input type="text" name="agent_a_signature" class="form-control" style="border: none; border-bottom: 1px solid #000; border-radius: 0; text-align: center; box-shadow: none;" required>
+    </div>
+    <div class="signature-box">
+        <p><strong>Agent B</strong></p>
+        <br>
+        <input type="text" name="agent_b_signature" class="form-control" style="border: none; border-bottom: 1px solid #000; border-radius: 0; text-align: center; box-shadow: none;" required>
+    </div>
+</div>
+
+            <button type="submit" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Submit</button>
+        </form>
+
+        <div class="footer">
+            Contract Code: IRE/F-A/112016RO
+        </div>
+        <div>
+            203 Al Sharafi Building | Bur Dubai, Dubai UAE | P.O Box 118163 | Dubai UAE
+        </div>
+        <div>
+            Phone : +971 4 3519995 | Fax: +971 43515611 | www.indus-re.com
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('agent_a_name').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var brn = selectedOption.getAttribute('data-brn');
+        var mobile = selectedOption.getAttribute('data-mobile');
+        var email = selectedOption.getAttribute('data-email');
+
+        document.getElementById('BRN').value = brn || '';
+        document.getElementById('agent_mobile').value = mobile || '';
+        document.getElementById('agent_email').value = email || '';
+    });
+</script>
+</body>
+</html>
