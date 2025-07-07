@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
 from typing import Optional
+from typing import List, Optional
 
 class AgentAgreementBase(BaseModel):
     # Agreement Info
@@ -45,14 +46,17 @@ class AgentAgreementBase(BaseModel):
     building_name: str
     listed_price: str
     property_description: str
+    mou_exist: bool
+    property_tenanted: bool
+    maintenance_description: str
     
     # Commission
-    landlord_agent_percent: str
-    tenant_agent_percent: str
-    tenant_name: str
-    tenant_passport: str
-    tenant_budget: str
-    tenant_contacted_agent: bool
+    seller_agent_percent: str
+    buyer_agent_percent: str
+    buyer_name: str
+    transfer_fee: List[str]
+    pre_finance_approval: bool
+    buyer_contacted_agent: bool
 
     # Signature
     agent_a_signature: str

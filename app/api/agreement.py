@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 from fpdf import FPDF
 import os
+from typing import List
 
 from app.db.models import AgentAgreement
 from app.db.schemas import AgentAgreementCreate
@@ -88,63 +89,82 @@ def generate_agreement(data: dict) -> str:
     pdf.add_page()
     
     # Header with date
-    pdf.set_font("Arial", "", 9)  # Smaller date font
+    pdf.set_font("Arial", "", 9)
     pdf.cell(0, 5, f"Date: {data['dated']}", ln=1, align="R")
-    pdf.ln(8)  # Reduced spacing
+    pdf.ln(8)
     
     # PART 1: THE PARTIES
     pdf.section_title("PART 1 - THE PARTIES")
     
-    # Agent A Section (simplified)
+    # Agent A Section (updated with all fields)
     agent_a_data = {
         "Establishment": data['agent_a_establishment'],
         "Address": data['agent_a_address'],
-        "Contact": f"{data['agent_a_phone']} | {data['agent_a_email']}",
+        "Phone": data['agent_a_phone'],
+        "Fax": data['agent_a_fax'],
+        "Email": data['agent_a_email'],
+        "OR Number": data['agent_a_orn'],
         "License": data['agent_a_license'],
-        "Agent": data['agent_a_name'],
+        "PO Box": data['agent_a_po_box'],
+        "Emirates": data['agent_a_emirates'],
+        "Agent Name": data['agent_a_name'],
         "BRN": data['agent_a_brn'],
-        "Mobile": data['agent_a_mobile']
+        "Date Issued": data['agent_a_date_issued'],
+        "Mobile": data['agent_a_mobile'],
+        "Personal Email": data['agent_a_email_personal']
     }
     pdf.bordered_section("A) THE AGENT (LANDLORD'S AGENT)", agent_a_data)
     
-    # Agent B Section (simplified)
+    # Agent B Section (updated with all fields)
     agent_b_data = {
         "Establishment": data['agent_b_establishment'],
         "Address": data['agent_b_address'],
-        "Contact": f"{data['agent_b_phone']} | {data['agent_b_email']}",
+        "Phone": data['agent_b_phone'],
+        "Fax": data['agent_b_fax'],
+        "Email": data['agent_b_email'],
+        "OR Number": data['agent_b_orn'],
         "License": data['agent_b_license'],
-        "Agent": data['agent_b_name'],
+        "PO Box": data['agent_b_po_box'],
+        "Emirates": data['agent_b_emirates'],
+        "Agent Name": data['agent_b_name'],
         "BRN": data['agent_b_brn'],
-        "Mobile": data['agent_b_mobile']
+        "Date Issued": data['agent_b_date_issued'],
+        "Mobile": data['agent_b_mobile'],
+        "Personal Email": data['agent_b_email_personal']
     }
     pdf.bordered_section("B) THE AGENT (TENANT'S AGENT)", agent_b_data)
-    pdf.ln(8)  # Reduced spacing
+    pdf.ln(8)
     
     # PART 2: THE PROPERTY
     pdf.section_title("PART 2 - THE PROPERTY")
     
     property_data = {
         "Address": data['property_address'],
-        "Building": data['building_name'],
-        "Price": data['listed_price'],
-        "Description": data['property_description']
+        "Master Developer": data['master_developer'],
+        "Master Project": data['master_project'],
+        "Building Name": data['building_name'],
+        "Listed Price": data['listed_price'],
+        "Description": data['property_description'],
+        "MOU Exists": "Yes" if data['mou_exist'] else "No",
+        "Property Tenanted": "Yes" if data['property_tenanted'] else "No",
+        "Maintenance Description Fee P.A": f"{data['maintenance_description']} per sq.ft"
     }
     pdf.bordered_section("PROPERTY DETAILS", property_data)
-    pdf.ln(8)  # Reduced spacing
+    pdf.ln(8)
     
     # PART 3: THE COMMISSION
     pdf.section_title("PART 3 - THE COMMISSION")
     
     commission_data = {
-        "Landlord %": data['landlord_agent_percent'],
-        "Tenant %": f"{data['tenant_agent_percent']} %",
-        "Tenant": data['tenant_name'],
-        "Passport": data['tenant_passport'],
-        "Budget": data['tenant_budget'],
-        "Contacted Agent": "Yes" if data['tenant_contacted_agent'] else "No"
+        "Seller Agent %": f"{data['seller_agent_percent']}%",
+        "Buyer Agent %": f"{data['buyer_agent_percent']}%",
+        "Buyer Name": data['buyer_name'],
+        "Transfer Fee Paid By": data['transfer_fee'].replace(",", " & "),
+        "Pre-Finance Approval": "Yes" if data['pre_finance_approval'] else "No",
+        "Buyer Contacted Agent": "Yes" if data['buyer_contacted_agent'] else "No"
     }
     pdf.bordered_section("COMMISSION DETAILS", commission_data)
-    pdf.ln(8)  # Reduced spacing
+    pdf.ln(8)
     
     # PART 4: SIGNATURES
     pdf.section_title("PART 4 - SIGNATURES")
@@ -153,25 +173,21 @@ def generate_agreement(data: dict) -> str:
     pdf.set_font("Arial", "", 9)
     notice_text = [
         "Both Agents are required to co-operate fully, complete this FORM & BOTH retain",
-        "a fully signed & stamped copy on file. RERA DRS is available to both parties.",
-        "(Office Stamps 'X' above).",
-        "",
-        "IN THE EVENT AGENT A DOES NOT RESPOND WITHIN 24 HOURS,",
-        "AGENT B MUST CONTACT RERA"
+        "a fully signed & stamped copy on file."
     ]
     
     for line in notice_text:
-        if line:  # Skip empty lines (spacing)
+        if line:
             pdf.cell(0, 5, line, ln=1)
         else:
-            pdf.ln(3)  # Small space for empty lines
+            pdf.ln(3)
     
     pdf.ln(10)
     
     # Signature lines with actual signatures
     pdf.set_font("Arial", "", 10)
-    pdf.cell(90, 20, f"Agent A: {data['agent_a_signature']}", 0, 0, "C")
-    pdf.cell(90, 20, f"Agent B: {data['agent_b_signature']}", 0, 1, "C")
+    pdf.cell(50, 30, f"Agent A: {data['agent_a_signature']}", 0, 0, "C")
+    pdf.cell(100, 30, f"Agent B: {data['agent_b_signature']}", 0, 1, "C")
     
     # Save PDF
     os.makedirs("pdf_output", exist_ok=True)
@@ -218,17 +234,23 @@ async def create_agreement(
     building_name: str = Form(...),
     listed_price: str = Form(...),
     property_description: str = Form(...),
-    landlord_agent_percent: str = Form(...),
-    tenant_agent_percent: str = Form(...),
-    tenant_name: str = Form(...),
-    tenant_passport: str = Form(...),
-    tenant_budget: str = Form(...),
-    tenant_contacted_agent: str = Form(...),
+    mou_exist: str = Form(...),
+    property_tenanted: str = Form(...),
+    maintenance_description: str = Form(...),
+    seller_agent_percent: str = Form(...),
+    buyer_agent_percent: str = Form(...),
+    buyer_name: str = Form(...),
+    transfer_fee: List[str] = Form(...), 
+    pre_finance_approval: str = Form(...),
+    buyer_contacted_agent: str = Form(...),
     agent_a_signature: str = Form(...),
     agent_b_signature: str = Form(...),
     db: Session = Depends(get_db)
 ):
     # Convert form data to dict
+
+    transfer_fee_str = ",".join(transfer_fee)  # "buyer,seller"
+    print(transfer_fee_str)
     agreement_data = {
         "dated": dated,
         "agent_a_establishment": agent_a_establishment,
@@ -266,12 +288,15 @@ async def create_agreement(
         "building_name":building_name,
         "listed_price":listed_price,
         "property_description":property_description,
-        "landlord_agent_percent":landlord_agent_percent,
-        "tenant_agent_percent":tenant_agent_percent,
-        "tenant_name":tenant_name,
-        "tenant_passport":tenant_passport,
-        "tenant_budget": tenant_budget,
-        "tenant_contacted_agent": tenant_contacted_agent.lower() == "yes",
+        "mou_exist": mou_exist.lower() == "yes",
+        "property_tenanted":property_tenanted.lower() == "yes",
+        "maintenance_description":maintenance_description,
+        "seller_agent_percent":seller_agent_percent,
+        "buyer_agent_percent":buyer_agent_percent,
+        "buyer_name":buyer_name,
+        "transfer_fee": transfer_fee_str,
+        "pre_finance_approval": pre_finance_approval.lower() == "yes",
+        "buyer_contacted_agent": buyer_contacted_agent.lower() == "yes",
         "agent_a_signature": agent_a_signature,
         "agent_b_signature": agent_b_signature
     }

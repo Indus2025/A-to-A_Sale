@@ -56,14 +56,17 @@ class AgentAgreement(TimestampMixin, Base):
     building_name = Column(String(100))
     listed_price = Column(String(50))
     property_description = Column(Text)
+    mou_exist = Column(Boolean)
+    property_tenanted = Column(Boolean)
+    maintenance_description = Column(Text)
     
     # Commission
-    landlord_agent_percent = Column(String(10))
-    tenant_agent_percent = Column(String(10))
-    tenant_name = Column(String(100))
-    tenant_passport = Column(String(50))
-    tenant_budget = Column(String(50))
-    tenant_contacted_agent = Column(Boolean)
+    transfer_fee = Column(String(50))
+    seller_agent_percent = Column(String(10))
+    buyer_agent_percent = Column(String(10))
+    buyer_name = Column(String(100))
+    pre_finance_approval = Column(Boolean)
+    buyer_contacted_agent = Column(Boolean)
 
     # Agent A Signature
     agent_a_signature = Column(String(255))
