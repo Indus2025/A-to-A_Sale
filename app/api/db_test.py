@@ -8,7 +8,7 @@ import os
 load_dotenv()
 
 # Create the database engine
-SQL_DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@localhost:8889/a_to_a_form"
+SQL_DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@a-to-a-sale.cfu6suc24hx8.ap-south-1.rds.amazonaws.com/atoasale"
 engine = create_engine(SQL_DATABASE_URI)
 
 # Create a session factory
