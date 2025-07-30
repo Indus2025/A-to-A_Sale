@@ -79,6 +79,12 @@
         input[type="radio"] {
             margin-right: 5px;
         }
+        .location-selector {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +96,16 @@
         </div>
 
         <form method="POST" action="/v1/submit-agreement" enctype="multipart/form-data">
+            <div class="location-selector">
+                <label><strong>Select Location:</strong></label>
+                <label>
+                    <input type="radio" name="location" value="DMCC" checked onchange="updateAgentOptions()"> DMCC
+                </label>
+                <label>
+                    <input type="radio" name="location" value="LLC" onchange="updateAgentOptions()"> LLC
+                </label>
+            </div>
+
             <table>
                 <tr>
                     <th colspan="1">PART 1 - THE PARTIES</th>
@@ -104,11 +120,11 @@
                 </tr>
                 <tr>
                     <td>NAME OF THE ESTABLISHMENT:</td>
-                    <td><input type="text" name="agent_a_establishment" class="form-control" value="Indus Real Estate (LLC) DMCC Branch"></td>
+                    <td><input type="text" name="agent_a_establishment" id="agent_a_establishment" class="form-control" value="Indus Real Estate (LLC) DMCC Branch"></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
-                    <td><input type="text" name="agent_a_address" class="form-control" value="Office 4H Almas Tower, JLT, DMCC, Dubai, UAE"></td>
+                    <td><input type="text" name="agent_a_address" id="agent_a_address" class="form-control" value="Office 4H Almas Tower, JLT, DMCC, Dubai, UAE"></td>
                 </tr>
                 <tr>
                     <th colspan="2">Office Contact Details:</th>
@@ -131,7 +147,7 @@
                 </tr>
                 <tr>
                     <td>License No.:</td>
-                    <td><input type="text" name="agent_a_license" class="form-control" value="DMCC-446268"></td>
+                    <td><input type="text" name="agent_a_license" id="agent_a_license" class="form-control" value="DMCC-446268"></td>
                 </tr>
                 <tr>
                     <td>P.O Box:</td>
@@ -146,19 +162,10 @@
                 </tr>
                 <tr>
                     <td>Registered Agent:<span style="color: red;">*</span></td>
-                    <td><select name="agent_a_name" id="agent_a_name" class="form-control" required>
-                        <option value="" disabled selected>Select an Agent</option>
-                        <option name="agent_a_name" value="TAMIR ABDELKARIM" data-brn="76172" data-mobile="507109122" data-email="tamir.abdelkarim@indusre.ae">TAMIR ABDELKARIM</option>
-                        <option name="agent_a_name" value="RUPESH KUMAR GOVINDANI" data-brn="76013" data-mobile="529711668" data-email="rupesh.govindani@indusre.ae">RUPESH KUMAR GOVINDANI</option>
-                        <option name="agent_a_name" value="DAWYNNE DARRYL PETERSEN" data-brn="73501" data-mobile="585708097" data-email="dawynne.petersen@indusre.ae">DAWYNNE DARRYL PETERSEN</option>
-                        <option name="agent_a_name" value="DIPTI NAIR" data-brn="48604" data-mobile="556610924" data-email="dipti.nair@indusre.ae">DIPTI NAIR</option>
-                        <option name="agent_a_name" value="LI LI HSIEH CHEN TSAI TAO" data-brn="42414" data-mobile="568853394" data-email="kim.hsieh@indusre.ae">LI LI HSIEH CHEN TSAI TAO</option>
-                        <option name="agent_a_name" value="PAURAS PRAVINCHANDRA SHAH" data-brn="52032" data-mobile="561624784" data-email="pauras@indusre.ae">PAURAS PRAVINCHANDRA SHAH</option>
-                        <option name="agent_a_name" value="TAHSEEN IBRAHIM MUNSHI" data-brn="55464" data-mobile="527186123" data-email="Tahseen.munshi@indusre.ae">TAHSEEN IBRAHIM MUNSHI</option>
-                        <option name="agent_a_name" value="SAGAR ABBAS" data-brn="37908" data-mobile="558148095" data-email="sagar@indusre.ae">SAGAR ABBAS</option>
-                        <option name="agent_a_name" value="NARDOS GIDEY BIRHANU" data-brn="82279" data-mobile="502258701" data-email="nardos.gidey@indusre.ae">NARDOS GIDEY BIRHANU</option>
-                        <option name="agent_a_name" value="MELANIE JANE O KEEFE" data-brn="56089" data-mobile="585087377" data-email="mel.okeefe-jones@indusre.ae">MELANIE JANE O KEEFE</option>
-                    </select>
+                    <td>
+                        <select name="agent_a_name" id="agent_a_name" class="form-control" required>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -175,7 +182,7 @@
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="email" name="agent_a_email_personal" id="agent_email"  class="form-control" required></td>
+                    <td><input type="email" name="agent_a_email_personal" id="agent_email" class="form-control" required></td>
                 </tr>
                 <tr>
                     <th colspan="2">DECLARATION BY AGENT "A"</th>
@@ -442,15 +449,81 @@ with a reasonable reply with 24 hours.</p>
     </div>
 
     <script>
-    document.getElementById('agent_a_name').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var brn = selectedOption.getAttribute('data-brn');
-        var mobile = selectedOption.getAttribute('data-mobile');
-        var email = selectedOption.getAttribute('data-email');
+    // Define agents for both locations
+    const agents = {
+        DMCC: [
+            {name: "TAMIR ABDELKARIM", brn: "76172", mobile: "507109122", email: "tamir.abdelkarim@indusre.ae"},
+            {name: "RUPESH KUMAR GOVINDANI", brn: "76013", mobile: "529711668", email: "rupesh.govindani@indusre.ae"},
+            {name: "DAWYNNE DARRYL PETERSEN", brn: "73501", mobile: "585708097", email: "dawynne.petersen@indusre.ae"},
+            {name: "DIPTI NAIR", brn: "48604", mobile: "556610924", email: "dipti.nair@indusre.ae"},
+            {name: "LI LI HSIEH CHEN TSAI TAO", brn: "42414", mobile: "568853394", email: "kim.hsieh@indusre.ae"},
+            {name: "PAURAS PRAVINCHANDRA SHAH", brn: "52032", mobile: "561624784", email: "pauras@indusre.ae"},
+            {name: "TAHSEEN IBRAHIM MUNSHI", brn: "55464", mobile: "527186123", email: "Tahseen.munshi@indusre.ae"},
+            {name: "SAGAR ABBAS", brn: "37908", mobile: "558148095", email: "sagar@indusre.ae"},
+            {name: "NARDOS GIDEY BIRHANU", brn: "82279", mobile: "502258701", email: "nardos.gidey@indusre.ae"},
+            {name: "MELANIE JANE O KEEFE", brn: "56089", mobile: "585087377", email: "mel.okeefe-jones@indusre.ae"}
+        ],
+        LLC: [
+            {name: "HAMIR KESHAVJI ASHER", brn: "1199", mobile: "505517804", email: "hamir@indusre.ae"},
+            {name: "MANISH GARG", brn: "70381", mobile: "561672681", email: "ire-accounts@indusre.ae"},
+            {name: "ANEET KUMAR BHAMBHANI", brn: "29569", mobile: "552320168", email: "aneet.kumar@indusre.ae"},
+            {name: "NARAYAN BHAGWANDAS", brn: "11185", mobile: "558834941", email: "narayan.nihalani@indusre.ae"},
+            {name: "REYNALDA LATOZA OBILLOS", brn: "33252", mobile: "545154755", email: "reyn.obillos@indusre.ae"},
+            {name: "SANTOSH KHOT", brn: "36850", mobile: "503573561", email: "santosh@indusre.ae"},
+            {name: "NISHANT KUMAR TAHILRAMANI", brn: "30361", mobile: "555963603", email: "nishant.tahilramani@indusre.ae"},
+            {name: "KAMLESH PAGARANI", brn: "36969", mobile: "559291729", email: "kamlesh.pagarani@gmail.com"},
+            {name: "RAJIV MANOHAR GHANEKAR", brn: "26133", mobile: "506258132", email: "Rajiv.Ghanekar@indusre.ae"},
+            {name: "AFZAL KHAN", brn: "35461", mobile: "502996070", email: "afzal@indusre.ae"},
+            {name: "MAMTA SHARMA OM PRAKASH SHARMA NATWAL", brn: "79024", mobile: "585826833", email: "Mamta.Sharma@indusre.ae"}
+        ]
+    };
 
-        document.getElementById('BRN').value = brn || '';
-        document.getElementById('agent_mobile').value = mobile || '';
-        document.getElementById('agent_email').value = email || '';
+    // Function to update agent options based on selected location
+    function updateAgentOptions() {
+        const location = document.querySelector('input[name="location"]:checked').value;
+        const agentSelect = document.getElementById('agent_a_name');
+        
+        // Clear existing options
+        agentSelect.innerHTML = '<option value="" disabled selected>Select an Agent</option>';
+        
+        // Add new options based on location
+        agents[location].forEach(agent => {
+            const option = document.createElement('option');
+            option.value = agent.name;
+            option.textContent = agent.name;
+            option.setAttribute('data-brn', agent.brn);
+            option.setAttribute('data-mobile', agent.mobile);
+            option.setAttribute('data-email', agent.email);
+            agentSelect.appendChild(option);
+        });
+        
+        // Update establishment details based on location
+        if (location === 'DMCC') {
+            document.getElementById('agent_a_establishment').value = 'Indus Real Estate (LLC) DMCC Branch';
+            document.getElementById('agent_a_address').value = 'Office 4H Almas Tower, JLT, DMCC, Dubai, UAE';
+            document.getElementById('agent_a_license').value = 'DMCC-446268';
+        } else {
+            document.getElementById('agent_a_establishment').value = 'Indus Real Estate (LLC)';
+            document.getElementById('agent_a_address').value = '203 Al Sharafi Building, Bur Dubai, Dubai, UAE';
+            document.getElementById('agent_a_license').value = '';
+        }
+    }
+
+    // Initialize with DMCC agents
+    document.addEventListener('DOMContentLoaded', function() {
+        updateAgentOptions();
+        
+        // Add event listener for agent selection
+        document.getElementById('agent_a_name').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var brn = selectedOption.getAttribute('data-brn');
+            var mobile = selectedOption.getAttribute('data-mobile');
+            var email = selectedOption.getAttribute('data-email');
+
+            document.getElementById('BRN').value = brn || '';
+            document.getElementById('agent_mobile').value = mobile || '';
+            document.getElementById('agent_email').value = email || '';
+        });
     });
 </script>
 </body>
