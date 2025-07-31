@@ -7,7 +7,7 @@ import os
 load_dotenv()  # Load environment variables from .env file
 
 # PG_DATABASE_URI = os.getenv("DATABASE_URL_PG")
-SQL_DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@a-to-a-sale.cfu6suc24hx8.ap-south-1.rds.amazonaws.com/atoasale"
+SQL_DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@indus-digital-projects.cfu6suc24hx8.ap-south-1.rds.amazonaws.com/atoasale"
 print(f"the URI: {SQL_DATABASE_URI}")
 engine = create_engine(
     SQL_DATABASE_URI,
