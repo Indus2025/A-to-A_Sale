@@ -131,19 +131,19 @@
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td><input type="text" name="agent_a_phone" class="form-control" value="04 241 2888" readonly></td>
+                    <td><input type="text" name="agent_a_phone" id="agent_a_phone" class="form-control" value="04 241 2888" readonly></td>
                 </tr>
                 <tr>
                     <td>Fax:</td>
-                    <td><input type="text" name="agent_a_fax" class="form-control" value="04 241 2888" readonly></td>
+                    <td><input type="text" name="agent_a_fax" id="agent_a_fax" class="form-control" value="04 241 2888" readonly></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text" name="agent_a_email" class="form-control" value="reception@indusre.ae" readonly></td>
+                    <td><input type="text" name="agent_a_email" id="agent_a_email" class="form-control" value="reception@indusre.ae" readonly></td>
                 </tr>
                 <tr>
                     <td>ORN:</td>
-                    <td><input type="text" name="agent_a_orn" class="form-control" value="22926" readonly></td>
+                    <td><input type="text" name="agent_a_orn" id="agent_a_orn" class="form-control" value="22926" readonly></td>
                 </tr>
                 <tr>
                     <td>License No.:</td>
@@ -501,11 +501,19 @@ with a reasonable reply with 24 hours.</p>
         if (location === 'DMCC') {
             document.getElementById('agent_a_establishment').value = 'Indus Real Estate (LLC) DMCC Branch';
             document.getElementById('agent_a_address').value = 'Office 4H Almas Tower, JLT, DMCC, Dubai, UAE';
+            document.getElementById('agent_a_phone').value = '04 241 2888';
+            document.getElementById('agent_a_fax').value = '04 241 2888';
+            document.getElementById('agent_a_email').value = 'reception@indusre.ae';
+            document.getElementById('agent_a_orn').value = '22926';
             document.getElementById('agent_a_license').value = 'DMCC-446268';
         } else {
             document.getElementById('agent_a_establishment').value = 'Indus Real Estate (LLC)';
             document.getElementById('agent_a_address').value = '203 Al Sharafi Building, Bur Dubai, Dubai, UAE';
-            document.getElementById('agent_a_license').value = '';
+            document.getElementById('agent_a_phone').value = '04 3519995';
+            document.getElementById('agent_a_fax').value = '04 3519995';
+            document.getElementById('agent_a_email').value = 'info@indusre.ae';
+            document.getElementById('agent_a_orn').value = '123';
+            document.getElementById('agent_a_license').value = 'LLC-562031';
         }
     }
 
