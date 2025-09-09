@@ -3,452 +3,854 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGENT TO AGENT AGREEMENT</title>
+    <title>AGENT TO AGENT AGREEMENT - SALE | Indus Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-dark: #0A2E36;
+            --primary-gold: #C6A969;
+            --primary-light: #f8f5f0;
+            --accent: #8E6C49;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --border-radius: 8px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8f5f0 0%, #e9e2d6 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
             padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
         }
-        .header {
+        
+        .luxury-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .luxury-header {
+            background: var(--primary-dark);
+            padding: 30px;
             text-align: center;
-            margin-bottom: 20px;
+            position: relative;
+            color: white;
+            border-bottom: 4px solid var(--primary-gold);
         }
-        .header img {
-            max-width: 100px;
+        
+        .luxury-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary-gold) 50%, transparent 100%);
         }
-        .header h2 {
+        
+        .luxury-header img {
+            max-width: 120px;
+            margin-bottom: 15px;
+            /* filter: brightness(0) invert(1); */
+        }
+        
+        .luxury-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
             margin: 10px 0 5px;
-            font-size: 18px;
+            letter-spacing: 1px;
         }
-        table {
+        
+        .luxury-header h5 {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        .location-selector {
+            background: var(--primary-light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-gold);
+        }
+        
+        .location-selector label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-right: 25px;
+        }
+        
+        .luxury-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 16px;
+        
+        .luxury-table th {
+            background: linear-gradient(to bottom, var(--primary-dark), #0d3a45);
+            color: white;
+            padding: 18px 20px;
             text-align: left;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
         }
-        table th {
-            background-color: #f0f0f0;
-        }
-        .section-title {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .form-control {
+        
+        .luxury-table th:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            padding: 6px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
         }
+        
+        .luxury-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #eae6de;
+            background: white;
+            transition: var(--transition);
+        }
+        
+        .luxury-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .luxury-table tr:hover td {
+            background: #fcfaf7;
+        }
+        
+        .luxury-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e0d9c9;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            transition: var(--transition);
+            background: #fefdfb;
+        }
+        
+        .luxury-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(198, 169, 105, 0.2);
+        }
+        
+        .luxury-input[readonly] {
+            background-color: #f5f3ee;
+            color: #6a6351;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-gold);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .declaration {
+            background: var(--primary-light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            border-left: 3px solid var(--primary-gold);
+            margin: 15px 0;
+        }
+        
         .signature-section {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 40px;
+            gap: 30px;
         }
+        
         .signature-box {
-            width: 45%;
+            flex: 1;
             text-align: center;
-            border-top: 1px solid #000;
-            padding-top: 10px;
+            padding: 25px;
+            background: var(--primary-light);
+            border-radius: var(--border-radius);
+            position: relative;
+            border-top: 2px solid var(--primary-gold);
         }
-        .footer {
+        
+        .signature-box:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed var(--primary-gold);
+            pointer-events: none;
+        }
+        
+        .signature-box p {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+        
+        .signature-input {
+            border: none;
+            border-bottom: 2px solid var(--primary-gold);
+            background: transparent;
+            padding: 10px 0;
+            width: 80%;
             text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--text-dark);
+            transition: var(--transition);
         }
-        label {
-            margin-right: 20px;
+        
+        .signature-input:focus {
+            outline: none;
+            border-bottom-color: var(--accent);
+        }
+        
+        .luxury-button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, var(--primary-dark), #0d3a45);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .luxury-button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .luxury-button:hover:before {
+            left: 100%;
+        }
+        
+        .luxury-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .luxury-footer {
+            text-align: center;
+            padding: 25px;
+            background: var(--primary-dark);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .footer-text {
+            margin-top: 10px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .radio-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .radio-luxury {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .radio-luxury input {
+            position: absolute;
+            opacity: 0;
             cursor: pointer;
         }
-        input[type="radio"] {
-            margin-right: 5px;
+        
+        .checkmark {
+            position: absolute;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #f5f3ee;
+            border-radius: 50%;
+            border: 2px solid var(--primary-gold);
+            transition: var(--transition);
         }
-        .location-selector {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
+        
+        .radio-luxury input:checked ~ .checkmark {
+            background-color: var(--primary-gold);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .radio-luxury input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .radio-luxury .checkmark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+        
+        .checkbox-luxury {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .checkbox-luxury input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .checkmark-checkbox {
+            position: absolute;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #f5f3ee;
+            border-radius: 4px;
+            border: 2px solid var(--primary-gold);
+            transition: var(--transition);
+        }
+        
+        .checkbox-luxury input:checked ~ .checkmark-checkbox {
+            background-color: var(--primary-gold);
+        }
+        
+        .checkmark-checkbox:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-luxury input:checked ~ .checkmark-checkbox:after {
+            display: block;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        textarea.luxury-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        @media (max-width: 768px) {
+            .luxury-container {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+            
+            .form-content {
+                padding: 20px;
+            }
+            
+            .luxury-table th, 
+            .luxury-table td {
+                padding: 14px 12px;
+            }
+            
+            .signature-section {
+                flex-direction: column;
+            }
+            
+            .location-selector {
+                padding: 15px;
+            }
+            
+            .radio-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .checkbox-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+        
+        .checkbox-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="luxury-container">
+        <div class="luxury-header">
             <img src="/uploads/indus.png" alt="Indus Real Estate Logo">
             <h2>Agreement Between Agent to Agent - Sale</h2>
             <h5>As per the Real Estate Brokers By-Law No. (85) of 2006</h5>
         </div>
 
-        <form method="POST" action="/v1/submit-agreement" enctype="multipart/form-data">
-            <div class="location-selector">
-                <label><strong>Select Location:</strong></label>
-                <label>
-                    <input type="radio" name="location" value="DMCC" checked onchange="updateAgentOptions()"> DMCC
-                </label>
-                <label>
-                    <input type="radio" name="location" value="LLC" onchange="updateAgentOptions()"> LLC
-                </label>
-            </div>
-
-            <table>
-                <tr>
-                    <th colspan="1">PART 1 - THE PARTIES</th>
-                    <th colspan="1">
-                        <input type="date" name="dated" class="form-control" required>
-                    </th>
-                </tr>
-                
-                <!-- Agent A Section -->
-                <tr>
-                    <th colspan="2">A) THE AGENT / BROKER (LANDLORD'S AGENT)</th>
-                </tr>
-                <tr>
-                    <td>NAME OF THE ESTABLISHMENT:</td>
-                    <td><input type="text" name="agent_a_establishment" id="agent_a_establishment" class="form-control" value="Indus Real Estate (LLC) DMCC Branch" readonly></td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td><input type="text" name="agent_a_address" id="agent_a_address" class="form-control" value="Office 4H Almas Tower, JLT, DMCC, Dubai, UAE" readonly></td>
-                </tr>
-                <tr>
-                    <th colspan="2">Office Contact Details:</th>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td><input type="text" name="agent_a_phone" id="agent_a_phone" class="form-control" value="04 241 2888" readonly></td>
-                </tr>
-                <tr>
-                    <td>Fax:</td>
-                    <td><input type="text" name="agent_a_fax" id="agent_a_fax" class="form-control" value="04 241 2888" readonly></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" name="agent_a_email" id="agent_a_email" class="form-control" value="reception@indusre.ae" readonly></td>
-                </tr>
-                <tr>
-                    <td>ORN:</td>
-                    <td><input type="text" name="agent_a_orn" id="agent_a_orn" class="form-control" value="22926" readonly></td>
-                </tr>
-                <tr>
-                    <td>License No.:</td>
-                    <td><input type="text" name="agent_a_license" id="agent_a_license" class="form-control" value="DMCC-446268" readonly></td>
-                </tr>
-                <tr>
-                    <td>P.O Box:</td>
-                    <td><input type="text" name="agent_a_po_box" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>Emirates:</td>
-                    <td><input type="text" name="agent_a_emirates" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <th colspan="2">Registered Agent</th>
-                </tr>
-                <tr>
-                    <td>Registered Agent:<span style="color: red;">*</span></td>
-                    <td>
-                        <select name="agent_a_name" id="agent_a_name" class="form-control" required>
-                            <!-- Options will be populated by JavaScript -->
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>BRN:<span style="color: red;">*</span></td>
-                    <td><input type="text" name="agent_a_brn" id="BRN" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Date Issued:</td>
-                    <td><input type="date" name="agent_a_date_issued" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Mobile No.:</td>
-                    <td><input type="text" name="agent_a_mobile" id="agent_mobile" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="email" name="agent_a_email_personal" id="agent_email" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <th colspan="2">DECLARATION BY AGENT "A"</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
-have a current signed Seller's Agreement FORM A, I shall respond to a reasonable offer
-to purchase the listed property from Agent B, and shall not contact Agent B's Buyer nor
-confer with their client under no circumstances unless the nominated Buyer herein has
-already discussed the stated listed property with our office.</p>
-                    </td>
-                </tr>
-
-                <!-- Agent B Section -->
-                <tr>
-                    <th colspan="2">B) THE AGENT / BROKER (TENANT'S AGENT)</th>
-                </tr>
-                <tr>
-                    <td>NAME OF THE ESTABLISHMENT:</td>
-                    <td><input type="text" name="agent_b_establishment" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td><input type="text" name="agent_b_address" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <th colspan="2">Office Contact Details:</th>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td><input type="text" name="agent_b_phone" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>Fax:</td>
-                    <td><input type="text" name="agent_b_fax" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" name="agent_b_email" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>ORN:</td>
-                    <td><input type="text" name="agent_b_orn" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>License No.:</td>
-                    <td><input type="text" name="agent_b_license" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>P.O Box:</td>
-                    <td><input type="text" name="agent_b_po_box" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <td>Emirates:</td>
-                    <td><input type="text" name="agent_b_emirates" class="form-control" value=""></td>
-                </tr>
-                <tr>
-                    <th colspan="2">Registered Agent</th>
-                </tr>
-                <tr>
-                    <td>Registered Agent: <span style="color: red;">*</span></td>
-                    <td><input type="text" name="agent_b_name" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>BRN: <span style="color: red;">*</span></td>
-                    <td><input type="text" name="agent_b_brn" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Date Issued:</td>
-                    <td><input type="date" name="agent_b_date_issued" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Mobile No.:</td>
-                    <td><input type="text" name="agent_b_mobile" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="email" name="agent_b_email_personal" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <th colspan="2">DECLARATION BY AGENT "B"</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
-have a current signed Buyer's Agreement FORM B, I shall encourage my Buyer as
-named herein, to submit a reasonable offer for the stated property from Agent A,
-and shall not contact Agent A's Seller nor confer with their client under no
-circumstances unless the Agent A has delayed our proposal on the prescribed FORM
-with a reasonable reply with 24 hours.</p>
-                    </td>
-                </tr>
-            </table>
-
-            <table>
-                <tr>
-                    <th colspan="2">PART 2 - THE PROPERTY</th>
-                </tr>
-                <tr>
-                    <td>PROPERTY ADDRESS:</td>
-                    <td><input type="text" name="property_address" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>MASTER DEVELOPER:</td>
-                    <td><input type="text" name="master_developer" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>MASTER PROJECT NAME:</td>
-                    <td><input type="text" name="master_project" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <th colspan="2">PROPERTY DETAILS</th>
-                </tr>
-                <tr>
-                    <th colspan="2">Listing Agent to Complete</th>
-                </tr>
-                <tr>
-                    <td>BUILDING NAME:</td>
-                    <td><input type="text" name="building_name" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>LISTED PRICE:</td>
-                    <td><input type="text" name="listed_price" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>DESCRIPTION:</td>
-                    <td><textarea name="property_description" class="form-control" required></textarea></td>
-                </tr>
-                <tr>
-                    <th colspan="2">DOES A MOU EXIST ON THIS PROPERTY?</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label>
-                            <input type="radio" name="mou_exist" value="yes" required> YES
+        <div class="form-content">
+            <form method="POST" action="/v1/submit-agreement" enctype="multipart/form-data">
+                <div class="location-selector">
+                    <label><strong>Select Location:</strong></label>
+                    <div class="radio-container">
+                        <label class="radio-luxury">
+                            <input type="radio" name="location" value="DMCC" checked onchange="updateAgentOptions()">
+                            <span class="checkmark"></span>
+                            DMCC
                         </label>
-                        <label>
-                            <input type="radio" name="mou_exist" value="no"> NO
+                        <label class="radio-luxury">
+                            <input type="radio" name="location" value="LLC" onchange="updateAgentOptions()">
+                            <span class="checkmark"></span>
+                            LLC
                         </label>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">IS THIS PROPERTY TENANTED?</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label>
-                            <input type="radio" name="property_tenanted" value="yes" required> YES
-                        </label>
-                        <label>
-                            <input type="radio" name="property_tenanted" value="no"> NO
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>MAINTENANCE FEE P.A(per sq.ft):</td>
-                    <td><input type="text" name="maintenance_description" class="form-control"></td>
-                </tr>
-            </table>
+                    </div>
+                </div>
 
-            <table>
-                <tr>
-                    <th colspan="2">PART 3 - THE COMMISSION (Split)</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>The following commission split is agreed between the Agent A and Agent B</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>SELLER'S AGENT %:</td>
-                    <td><input type="text" name="seller_agent_percent" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>BUYER'S AGENT %:</td>
-                    <td><input type="text" name="buyer_agent_percent" class="form-control" required></td>
-                </tr>
-                <tr>
-                    <td>BUYER'S NAME (Family Name ONLY):<span style="color: red;">*</span></td>
-                    <td><input type="text" name="buyer_name" class="form-control" required></td>
-                </tr>
-                <tr>
-                <th colspan="2">TRANSFER FEE PAID BY:</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                    <label>
-                        <input type="checkbox" name="transfer_fee" value="SELLER 1%"> SELLER 1% 
-                    </label>
-                    <label>
-                        <input type="checkbox" name="transfer_fee" value="BUYER 1%"> BUYER 1%
-                    </label>
-                    <label>
-                        <input type="checkbox" name="transfer_fee" value="NEG"> NEG
-                    </label>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">HAS THE BUYER HAD PRE-FINANCE APPROVAL</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label>
-                            <input type="radio" name="pre_finance_approval" value="yes" required> YES
-                        </label>
-                        <label>
-                            <input type="radio" name="pre_finance_approval" value="no"> NO
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">HAS THIS BUYER CONTACTED THE LISTING AGENT?</th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label>
-                            <input type="radio" name="buyer_contacted_agent" value="yes" required> YES
-                        </label>
-                        <label>
-                            <input type="radio" name="buyer_contacted_agent" value="no"> NO
-                        </label>
-                    </td>
-                </tr>
-            </table>
+                <table class="luxury-table">
+                    <tr>
+                        <th colspan="1">PART 1 - THE PARTIES</th>
+                        <th colspan="1">
+                            <input type="date" name="dated" class="luxury-input" required>
+                        </th>
+                    </tr>
+                    
+                    <!-- Agent A Section -->
+                    <tr>
+                        <th colspan="2">A) THE AGENT / BROKER (SELLER'S AGENT)</th>
+                    </tr>
+                    <tr>
+                        <td>NAME OF THE ESTABLISHMENT:</td>
+                        <td><input type="text" name="agent_a_establishment" id="agent_a_establishment" class="luxury-input" value="Indus Real Estate (LLC) DMCC Branch" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><input type="text" name="agent_a_address" id="agent_a_address" class="luxury-input" value="Office 4H Almas Tower, JLT, DMCC, Dubai, UAE" readonly></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Office Contact Details:</th>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="text" name="agent_a_phone" id="agent_a_phone" class="luxury-input" value="04 241 2888" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Fax:</td>
+                        <td><input type="text" name="agent_a_fax" id="agent_a_fax" class="luxury-input" value="04 241 2888" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" name="agent_a_email" id="agent_a_email" class="luxury-input" value="reception@indusre.ae" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>ORN:</td>
+                        <td><input type="text" name="agent_a_orn" id="agent_a_orn" class="luxury-input" value="22926" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>License No.:</td>
+                        <td><input type="text" name="agent_a_license" id="agent_a_license" class="luxury-input" value="DMCC-446268" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>P.O Box:</td>
+                        <td><input type="text" name="agent_a_po_box" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Emirates:</td>
+                        <td><input type="text" name="agent_a_emirates" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Registered Agent</th>
+                    </tr>
+                    <tr>
+                        <td>Registered Agent:<span style="color: var(--primary-gold);">*</span></td>
+                        <td>
+                            <select name="agent_a_name" id="agent_a_name" class="luxury-input" required>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BRN:<span style="color: var(--primary-gold);">*</span></td>
+                        <td><input type="text" name="agent_a_brn" id="BRN" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Date Issued:</td>
+                        <td><input type="date" name="agent_a_date_issued" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile No.:</td>
+                        <td><input type="text" name="agent_a_mobile" id="agent_mobile" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="agent_a_email_personal" id="agent_email" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">DECLARATION BY AGENT "A"</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="declaration">
+                                I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
+                                have a current signed Seller's Agreement FORM A, I shall respond to a reasonable offer
+                                to purchase the listed property from Agent B, and shall not contact Agent B's Buyer nor
+                                confer with their client under no circumstances unless the nominated Buyer herein has
+                                already discussed the stated listed property with our office.
+                            </div>
+                        </td>
+                    </tr>
 
-            <table>
-                <tr>
-                    <th colspan="2">PART 4 - SIGNATURES</th>
-                </tr>
-            </table>
+                    <!-- Agent B Section -->
+                    <tr>
+                        <th colspan="2">B) THE AGENT / BROKER (BUYER'S AGENT)</th>
+                    </tr>
+                    <tr>
+                        <td>NAME OF THE ESTABLISHMENT:</td>
+                        <td><input type="text" name="agent_b_establishment" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><input type="text" name="agent_b_address" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Office Contact Details:</th>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="text" name="agent_b_phone" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Fax:</td>
+                        <td><input type="text" name="agent_b_fax" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" name="agent_b_email" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>ORN:</td>
+                        <td><input type="text" name="agent_b_orn" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>License No.:</td>
+                        <td><input type="text" name="agent_b_license" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>P.O Box:</td>
+                        <td><input type="text" name="agent_b_po_box" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>Emirates:</td>
+                        <td><input type="text" name="agent_b_emirates" class="luxury-input" value=""></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Registered Agent</th>
+                    </tr>
+                    <tr>
+                        <td>Registered Agent: <span style="color: var(--primary-gold);">*</span></td>
+                        <td><input type="text" name="agent_b_name" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>BRN: <span style="color: var(--primary-gold);">*</span></td>
+                        <td><input type="text" name="agent_b_brn" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Date Issued:</td>
+                        <td><input type="date" name="agent_b_date_issued" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile No.:</td>
+                        <td><input type="text" name="agent_b_mobile" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="email" name="agent_b_email_personal" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">DECLARATION BY AGENT "B"</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="declaration">
+                                I hereby declare, I have read and understood the Real Estate Brokers Code of Ethics, I
+                                have a current signed Buyer's Agreement FORM B, I shall encourage my Buyer as
+                                named herein, to submit a reasonable offer for the stated property from Agent A,
+                                and shall not contact Agent A's Seller nor confer with their client under no
+                                circumstances unless the Agent A has delayed our proposal on the prescribed FORM
+                                with a reasonable reply with 24 hours.
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
-            <div style="margin-top: 20px; font-weight: bold;">
-                Both Agents are required to co-operate fully, complete this FORM & BOTH retain a fully signed
-                & stamped copy on file.
-            </div>
-            <br><br><br><br>
+                <div class="section-title">PART 2 - THE PROPERTY</div>
+                <table class="luxury-table">
+                    <tr>
+                        <td>PROPERTY ADDRESS:</td>
+                        <td><input type="text" name="property_address" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>MASTER DEVELOPER:</td>
+                        <td><input type="text" name="master_developer" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>MASTER PROJECT NAME:</td>
+                        <td><input type="text" name="master_project" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">PROPERTY DETAILS</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Listing Agent to Complete</th>
+                    </tr>
+                    <tr>
+                        <td>BUILDING NAME:</td>
+                        <td><input type="text" name="building_name" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>LISTED PRICE:</td>
+                        <td><input type="text" name="listed_price" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>DESCRIPTION:</td>
+                        <td><textarea name="property_description" class="luxury-input" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">DOES A MOU EXIST ON THIS PROPERTY?</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="radio-container">
+                                <label class="radio-luxury">
+                                    <input type="radio" name="mou_exist" value="yes" required>
+                                    <span class="checkmark"></span>
+                                    YES
+                                </label>
+                                <label class="radio-luxury">
+                                    <input type="radio" name="mou_exist" value="no">
+                                    <span class="checkmark"></span>
+                                    NO
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">IS THIS PROPERTY TENANTED?</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="radio-container">
+                                <label class="radio-luxury">
+                                    <input type="radio" name="property_tenanted" value="yes" required>
+                                    <span class="checkmark"></span>
+                                    YES
+                                </label>
+                                <label class="radio-luxury">
+                                    <input type="radio" name="property_tenanted" value="no">
+                                    <span class="checkmark"></span>
+                                    NO
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MAINTENANCE FEE P.A(per sq.ft):</td>
+                        <td><input type="text" name="maintenance_description" class="luxury-input"></td>
+                    </tr>
+                </table>
 
-<div class="signature-section">
-    <div class="signature-box">
-        <p><strong>Agent A</strong></p>
-        <br>
-        <input type="text" name="agent_a_signature" class="form-control" style="border: none; border-bottom: 1px solid #000; border-radius: 0; text-align: center; box-shadow: none;" required>
-    </div>
-    <div class="signature-box">
-        <p><strong>Agent B</strong></p>
-        <br>
-        <input type="text" name="agent_b_signature" class="form-control" style="border: none; border-bottom: 1px solid #000; border-radius: 0; text-align: center; box-shadow: none;" required>
-    </div>
-</div>
+                <div class="section-title">PART 3 - THE COMMISSION (Split)</div>
+                <table class="luxury-table">
+                    <tr>
+                        <td colspan="2">
+                            <p>The following commission split is agreed between the Agent A and Agent B</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SELLER'S AGENT %:</td>
+                        <td><input type="text" name="seller_agent_percent" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>BUYER'S AGENT %:</td>
+                        <td><input type="text" name="buyer_agent_percent" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <td>BUYER'S NAME (Family Name ONLY):<span style="color: var(--primary-gold);">*</span></td>
+                        <td><input type="text" name="buyer_name" class="luxury-input" required></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">TRANSFER FEE PAID BY:</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="checkbox-container">
+                                <label class="checkbox-luxury">
+                                    <input type="checkbox" name="transfer_fee" value="SELLER 1%">
+                                    <span class="checkmark-checkbox"></span>
+                                    SELLER 1% 
+                                </label>
+                                <label class="checkbox-luxury">
+                                    <input type="checkbox" name="transfer_fee" value="BUYER 1%">
+                                    <span class="checkmark-checkbox"></span>
+                                    BUYER 1%
+                                </label>
+                                <label class="checkbox-luxury">
+                                    <input type="checkbox" name="transfer_fee" value="NEG">
+                                    <span class="checkmark-checkbox"></span>
+                                    NEG
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">HAS THE BUYER HAD PRE-FINANCE APPROVAL</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="radio-container">
+                                <label class="radio-luxury">
+                                    <input type="radio" name="pre_finance_approval" value="yes" required>
+                                    <span class="checkmark"></span>
+                                    YES
+                                </label>
+                                <label class="radio-luxury">
+                                    <input type="radio" name="pre_finance_approval" value="no">
+                                    <span class="checkmark"></span>
+                                    NO
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">HAS THIS BUYER CONTACTED THE LISTING AGENT?</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="radio-container">
+                                <label class="radio-luxury">
+                                    <input type="radio" name="buyer_contacted_agent" value="yes" required>
+                                    <span class="checkmark"></span>
+                                    YES
+                                </label>
+                                <label class="radio-luxury">
+                                    <input type="radio" name="buyer_contacted_agent" value="no">
+                                    <span class="checkmark"></span>
+                                    NO
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
-            <button type="submit" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Submit</button>
-        </form>
+                <div class="section-title">PART 4 - SIGNATURES</div>
 
-        <div class="footer">
+                <div style="margin: 25px 0; font-weight: 500; line-height: 1.8;">
+                    Both Agents are required to co-operate fully, complete this FORM & BOTH retain a fully signed
+                    & stamped copy on file.
+                </div>
+
+                <div class="signature-section">
+                    <div class="signature-box">
+                        <p><strong>Agent A</strong></p>
+                        <input type="text" name="agent_a_signature" class="signature-input" required>
+                    </div>
+                    <div class="signature-box">
+                        <p><strong>Agent B</strong></p>
+                        <input type="text" name="agent_b_signature" class="signature-input" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="luxury-button">
+                    <i class="fas fa-pen-fancy" style="margin-right: 10px;"></i> Submit Agreement
+                </button>
+            </form>
+        </div>
+
+        <div class="luxury-footer">
             Contract Code: IRE/F-A/112016RO
-        </div>
-        <div>
-            203 Al Sharafi Building | Bur Dubai, Dubai UAE | P.O Box 118163 | Dubai UAE
-        </div>
-        <div>
-            Phone : +971 4 3519995 | Fax: +971 43515611 | www.indus-re.com
+            <div class="footer-text">
+                203 Al Sharafi Building | Bur Dubai, Dubai UAE | P.O Box 118163 | Dubai UAE
+            </div>
+            <div class="footer-text">
+                Phone : +971 4 3519995 | Fax: +971 43515611 | www.indus-re.com
+            </div>
         </div>
     </div>
 
-    <script>
+     <script>
     // Define agents for both locations
     const agents = {
         DMCC: [
@@ -509,8 +911,8 @@ with a reasonable reply with 24 hours.</p>
         } else {
             document.getElementById('agent_a_establishment').value = 'Indus Real Estate (LLC)';
             document.getElementById('agent_a_address').value = '203 Al Sharafi Building, Bur Dubai, Dubai, UAE';
-            document.getElementById('agent_a_phone').value = '04 3519995';
-            document.getElementById('agent_a_fax').value = '04 3519995';
+            document.getElementById('agent_a_phone').value = '043519995';
+            document.getElementById('agent_a_fax').value = '043519995';
             document.getElementById('agent_a_email').value = 'info@indusre.ae';
             document.getElementById('agent_a_orn').value = '123';
             document.getElementById('agent_a_license').value = 'LLC-562031';
